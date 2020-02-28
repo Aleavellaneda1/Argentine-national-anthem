@@ -1,31 +1,27 @@
-DO(){
-		
+DO(){	
 	BEEP_VOL="100%"
-	
 	CURRENT_VOL="$(amixer sget Master |grep -m1 "\[on\]"|awk '{print $5}'|tr -d '[]')"
 	amixer sset Master $BEEP_VOL >/dev/null 2>&1
-	
-	echo "DO   $1 $2"
+	echo "DO    $1 $2"
 	(
 		speaker-test -t sine -f 261,63 >/dev/null 2>&1 & BEEP_PID=$!
 		sleep $1
 		kill -9 $BEEP_PID 2>/dev/null
 		
 	)
-
 	amixer sset Master $CURRENT_VOL >/dev/null 2>&1
-		sleep $2
+	sleep $2
 }
 
 
-MDO() {
+DO-M() {
 	
 	BEEP_VOL="100%"
 	
 	CURRENT_VOL="$(amixer sget Master |grep -m1 "\[on\]"|awk '{print $5}'|tr -d '[]')"
 	amixer sset Master $BEEP_VOL >/dev/null 2>&1
 	
-	echo "MDO  $1 $2"
+	echo "DO#0  $1 $2"
 	(
 		speaker-test -t sine -f 277,18 >/dev/null 2>&1 & BEEP_PID=$!
 		sleep $1
@@ -211,17 +207,17 @@ SI() {
 
 
 
-DO "1.15" "0"
+DO "1" "0"
 MI "1.30" "0"
 DO "0.30" "0"
-SOL "1.50" "0.4"
+SOL "1.50" "0.3"
 #
 FA "1.30" "0.2"
 RE "0.25" "0"
-SI "0.7" "0.03"
-SI "0.7" "0.03"
-SI "0.7" "0.03"
-SI "0.7" "0.03"
+SI "0.5" "0.03"
+SI "0.5" "0.03"
+SI "0.5" "0.03"
+SI "0.5" "0.03"
 
 DO "0.36" "0"
 RE "0.23" "0"
@@ -232,30 +228,30 @@ DO "1" "0"
 
 MI "0.81" "0"
 LA "0.70" "0"
-SOL "1" "0"
-MFA "0.9" "0"
-MRE "1" "0"
+SOL "0.8" "0"
+FA "0.9" "0"
+RE "1" "0"
 
 
-MSOL "0.9" "0"
+SOL "0.9" "0"
 MI "1.25" "0"
-MDO "0.9" "0"
+DO "0.9" "0"
 #
 #
-MFA "1.25" "0"
+FA "1.25" "0"
 MI "0.9" "0"
-MRE "1.1" "0"
-#
-MFA "1.25" "0"
-MI "0.9" "0"
-MRE "1.1" "0"
+RE "1.1" "0"
+#############
+#FA "1.25" "0"
+#MI "0.9" "0"
+#RE "1.1" "0"
 
-MI "1.25" "0"
-MFA "1.25" "0"
-MSOL "1.25" "0"
-LA  "1.25" "0" 
-SI "1.25" "0"
-DO "1.25" "0"
+#MI "1.25" "0"
+#FA "1.25" "0"
+#SOL "1.25" "0"
+#LA  "1.25" "0" 
+#SI "1.25" "0"
+#DO "1.25" "0"
 
 
 # RE "1.25" "0"
@@ -432,3 +428,36 @@ DO "1.25" "0"
 # DO "1.25" "0"
 # DO "1.25" "0"
 # DO "1.25" "0"#
+
+
+
+
+
+
+
+
+
+
+
+
+SOL >re
+do si la
+SOL  re
+
+do si la
+SOL re
+do si do la
+
+<re, re re
+sol re
+do si la
+>sol re
+
+do si la
+>sol re
+do si do la
+
+re re mi
+mi >do si la sol
+sol la si la
+mi fa#
