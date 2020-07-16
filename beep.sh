@@ -1,8 +1,9 @@
+	echo "| NOTA |   TIEMPO   |   ESPERA  |"
 DO(){	
 	BEEP_VOL="100%"
 	CURRENT_VOL="$(amixer sget Master |grep -m1 "\[on\]"|awk '{print $5}'|tr -d '[]')"
 	amixer sset Master $BEEP_VOL >/dev/null 2>&1
-	echo "DO    $1 $2"
+	echo "|    DO    |    $1   |   $2   |"
 	(
 		speaker-test -t sine -f 261,63 >/dev/null 2>&1 & BEEP_PID=$!
 		sleep $1
@@ -22,6 +23,7 @@ DO-M() {
 	amixer sset Master $BEEP_VOL >/dev/null 2>&1
 	
 	echo "DO#0  $1 $2"
+	echo "| DO#0 |    $1   |   $2   |"
 	(
 		speaker-test -t sine -f 277,18 >/dev/null 2>&1 & BEEP_PID=$!
 		sleep $1
@@ -72,7 +74,7 @@ MI() {
 	BEEP_VOL="100%"
 	CURRENT_VOL="$(amixer sget Master |grep -m1 "\[on\]"|awk '{print $5}'|tr -d '[]')"
 	amixer sset Master $BEEP_VOL >/dev/null 2>&1
-	echo "MI  $1 $2"
+echo "|  MI  |    $1   |   $2   |"
 	(
 		speaker-test -t sine -f 329,63 >/dev/null 2>&1 & BEEP_PID=$!
 		sleep $1
@@ -207,10 +209,10 @@ SI() {
 
 
 
-DO "1" "0"
-MI "1.30" "0"
-DO "0.30" "0"
-SOL "1.50" "0.3"
+DO "01.00" "00.00"
+MI "01.30" "00.00"
+DO "00.30" "00.00"
+SOL "01.50" "00.30"
 
 FA "1.30" "0.2"
 RE "0.25" "0"
